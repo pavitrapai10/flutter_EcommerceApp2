@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -12,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final FlutterSecureStorage _secureStorage = const FlutterSecureStorage();
 
   bool isUsernameValid = false;
   bool isPasswordValid = false;
@@ -26,6 +28,14 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<String?> _getUsername() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('username');
+  }
+
+  Future<void> _savePassword(String password) async {
+    await _secureStorage.write(key: 'user_password', value: password);
+  }
+
+  Future<String?> _getPassword() async {
+    return await _secureStorage.read(key: 'user_password');
   }
 
   void _validateUsername(String value) {
@@ -58,11 +68,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _handleLogin() async {
     String username = _usernameController.text;
+    String password = _passwordController.text;
+
     await _saveUsername(username);
+    await _savePassword(password);
+
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Username saved!')),
+      const SnackBar(content: Text('Username and password saved securely!')),
     );
-    _login();  // Navigate to home screen
+
+    _login(); // Navigate to home screen
   }
 
   void _login() {
@@ -70,6 +85,19 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    }
+  }
+
+  Future<void> _showSavedPassword() async {
+    String? password = await _getPassword();
+    if (password != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text("Saved Password: $password")),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("No password saved")),
       );
     }
   }
@@ -91,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _usernameController,
                 decoration: InputDecoration(
                   labelText: "Username",
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: usernameError != null ? Colors.red : Colors.grey),
                   ),
@@ -113,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: "Password",
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: passwordError != null ? Colors.red : Colors.grey),
                   ),
@@ -133,6 +161,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ElevatedButton(
                 onPressed: (isUsernameValid && isPasswordValid) ? _handleLogin : null,
                 child: const Text("Login"),
+              ),
+
+              const SizedBox(height: 10),
+
+              ElevatedButton(
+                onPressed: _showSavedPassword,
+                child: const Text("Show Saved Password"),
               ),
             ],
           ),
