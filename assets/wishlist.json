@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Red Dress",
+    "image": "assets/images/dress.jpg",
+    "price": 49.99,
+    "description": "A stylish and elegant red evening dress.",
+    "details": "Made from high-quality fabric. Available in sizes S to XL.",
+    "options": ["S", "M", "L", "XL"]
+  },
+  {
+    "id": 2,
+    "name": "Makeup Kit",
+    "image": "assets/images/makeup.jpg",
+    "price": 29.99,
+    "description": "A complete makeup set with brushes, palettes, and more.",
+    "details": "Includes foundation, eyeshadow palette, blush, and lipstick.",
+    "options": ["Basic", "Deluxe", "Pro"]
+  },
+  {
+    "id": 3,
+    "name": "High Heels",
+    "image": "assets/images/shoes.jpg",
+    "price": 59.99,
+    "description": "Stylish high heels perfect for any occasion.",
+    "details": "Material: Leather. Heel height: 3 inches.",
+    "options": ["US 6", "US 7", "US 8", "US 9"]
+  },
+  {
+    "id": 4,
+    "name": "Wrist Watch",
+    "image": "assets/images/watch.jpg",
+    "price": 89.99,
+    "description": "A luxury wristwatch with a classic design.",
+    "details": "Water-resistant up to 50 meters. 2-year warranty.",
+    "options": ["Gold", "Silver", "Black"]
+  },
+  {
+    "id": 5,
+    "name": "Handbag",
+    "image": "assets/images/handbag.jpg",
+    "price": 39.99,
+    "description": "A fashionable leather handbag with ample space.",
+    "details": "Includes multiple compartments with a zip closure.",
+    "options": ["Brown", "Black", "Beige"]
+  },
+  {
+    "id": 6,
+    "name": "Perfume",
+    "image": "assets/images/perfume.jpg",
+    "price": 19.99,
+    "description": "A refreshing and long-lasting fragrance.",
+    "details": "Volume: 100ml. Suitable for all occasions.",
+    "options": ["50ml", "100ml", "150ml"]
+  },
+  {
+    "id": 7,
+    "name": "Sunglasses",
+    "image": "assets/images/sunglasses.jpg",
+    "price": 24.99,
+    "description": "Stylish sunglasses with UV protection.",
+    "details": "Lens Type: Polarized. Frame: Metal.",
+    "options": ["Black", "Blue", "Brown"]
+  },
+  {
+    "id": 8,
+    "name": "Leather Jacket",
+    "image": "assets/images/jacket.jpg",
+    "price": 119.99,
+    "description": "A premium leather jacket for a rugged look.",
+    "details": "Material: Genuine leather. Lining: Polyester.",
+    "options": ["S", "M", "L", "XL", "XXL"]
+  },
+  {
+    "id": 9,
+    "name": "Smartphone",
+    "image": "assets/images/smartphone.webp",
+    "price": 699.99,
+    "description": "A powerful smartphone with stunning features.",
+    "details": "Available in multiple colors with 128GB storage.",
+    "options": ["Black", "White", "Blue"]
+  },
+  {
+    "id": 10,
+    "name": "Necklace",
+    "image": "assets/images/necklace.jpg",
+    "price": 34.99,
+    "description": "A beautiful gold-plated necklace.",
+    "details": "Length: 18 inches. Material: Gold-plated alloy.",
+    "options": ["Gold", "Rose Gold", "Silver"]
+  }
+]
